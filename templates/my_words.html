@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 0;
             padding: 0;
-        }
-        img {
-            max-width: 100%;
-            max-height: 450px; /* 限制图片高度 */
-            margin: 20px 0;
         }
         .word-container {
             display: flex;
@@ -32,25 +29,18 @@
     </style>
 </head>
 <body>
-    <h2>You entered the following words:</h2>
-    < img src="{{ url_for('static', filename='images/' + image) }}" alt="Random Image">
+    <h1>MY SAVED WORDS</h1>
     <ul class="word-container">
         {% for word in words %}
             <li>
-                <strong>{{ word }}</strong>
-                <button onclick="speak('{{ word }}')">Listen</button>
+                <strong>{{ word[0] }}</strong>
+                <button onclick="speak('{{ word[0] }}')">Listen</button>
             </li>
         {% endfor %}
     </ul>
     <div class="button-container">
         <button onclick="window.location.href='/'">首页</button>
-        <button onclick="window.location.href='/my_words'">我的单词</button>
+        <button onclick="window.location.href='/clear_words'">清空单词</button>w
     </div>
-    <script>
-        function speak(word) {
-            const msg = new SpeechSynthesisUtterance(word);
-            window.speechSynthesis.speak(msg);
-        }
-    </script>
 </body>
 </html>
